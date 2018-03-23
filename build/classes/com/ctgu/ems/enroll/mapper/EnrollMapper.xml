@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctgu.ems.enroll.dao.EnrollMapper">
+
+	<insert id="insert" parameterType="com.ctgu.ems.pojo.Enroll">
+    insert into enroll(enroll_id,type,sname,identify)
+    values (#{enroll_id,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, 
+      #{identify,jdbcType=VARCHAR})
+  </insert>
+
+
+</mapper>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctgu.ems.course_select.dao.SelectcourseMapper">
+  <resultMap id="BaseResultMap" type="com.ctgu.ems.pojo.Selectcourse">
+    <id column="classid" jdbcType="VARCHAR" property="classid" />
+    <id column="sid" jdbcType="VARCHAR" property="sid" />
+    <result column="time" jdbcType="INTEGER" property="time" />
+    <result column="tname" jdbcType="VARCHAR" property="tname" />
+    <result column="cname" jdbcType="VARCHAR" property="cname" />
+    <result column="sweek" jdbcType="INTEGER" property="sweek" />
+    <result column="eweek" jdbcType="INTEGER" property="eweek" />
+    <result column="classroom" jdbcType="VARCHAR" property="classroom" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    classid, sid, time, tname, cname, sweek, eweek, classroom
+  </sql>
+  
+  <select id="selectCourse" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from selectcourse
+    where  sid = #{sid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.ctgu.ems.pojo.SelectcourseKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from selectcourse
+    where classid = #{classid,jdbcType=VARCHAR}
+      and sid = #{sid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ctgu.ems.pojo.SelectcourseKey">
+    delete from selectcourse
+    where classid = #{classid,jdbcType=VARCHAR}
+      and sid = #{sid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ctgu.ems.pojo.Selectcourse">
+    insert into selectcourse (classid, sid, time, 
+      tname, cname, sweek, 
+      eweek, classroom)
+    values (#{classid,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER}, 
+      #{tname,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, #{sweek,jdbcType=INTEGER}, 
+      #{eweek,jdbcType=INTEGER}, #{classroom,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctgu.ems.pojo.Selectcourse">
+    insert into selectcourse
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classid != null">
+        classid,
+      </if>
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="tname != null">
+        tname,
+      </if>
+      <if test="cname != null">
+        cname,
+      </if>
+      <if test="sweek != null">
+        sweek,
+      </if>
+      <if test="eweek != null">
+        eweek,
+      </if>
+      <if test="classroom != null">
+        classroom,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classid != null">
+        #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=INTEGER},
+      </if>
+      <if test="tname != null">
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null">
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="sweek != null">
+        #{sweek,jdbcType=INTEGER},
+      </if>
+      <if test="eweek != null">
+        #{eweek,jdbcType=INTEGER},
+      </if>
+      <if test="classroom != null">
+        #{classroom,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctgu.ems.pojo.Selectcourse">
+    update selectcourse
+    <set>
+      <if test="time != null">
+        time = #{time,jdbcType=INTEGER},
+      </if>
+      <if test="tname != null">
+        tname = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null">
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="sweek != null">
+        sweek = #{sweek,jdbcType=INTEGER},
+      </if>
+      <if test="eweek != null">
+        eweek = #{eweek,jdbcType=INTEGER},
+      </if>
+      <if test="classroom != null">
+        classroom = #{classroom,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where classid = #{classid,jdbcType=VARCHAR}
+      and sid = #{sid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctgu.ems.pojo.Selectcourse">
+    update selectcourse
+    set time = #{time,jdbcType=INTEGER},
+      tname = #{tname,jdbcType=VARCHAR},
+      cname = #{cname,jdbcType=VARCHAR},
+      sweek = #{sweek,jdbcType=INTEGER},
+      eweek = #{eweek,jdbcType=INTEGER},
+      classroom = #{classroom,jdbcType=VARCHAR}
+    where classid = #{classid,jdbcType=VARCHAR}
+      and sid = #{sid,jdbcType=VARCHAR}
+  </update>
+</mapper>

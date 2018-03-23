@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN" 
+    "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+<configuration>
+	<!-- <typeAliases>
+		<typeAlias type="" alias=""/>
+	</typeAliases> -->
+	<mappers>
+		<mapper resource="com/ctgu/ems/course_select/mapper/CourseMapper.xml"/>
+		<mapper resource="com/ctgu/ems/student/mapper/StudentMapper.xml"/>
+		<mapper resource="com/ctgu/ems/course_select/mapper/ClassesMapper.xml"/>
+		<mapper resource="com/ctgu/ems/course_select/mapper/TeacherMapper.xml"/>
+		<mapper resource="com/ctgu/ems/course_select/mapper/SelectcourseMapper.xml"/>
+		<mapper resource="com/ctgu/ems/enroll/mapper/EnrollMapper.xml"/>
+		<mapper resource="com/ctgu/ems/comment/mapper/CommentMapper.xml"/> 
+		<mapper resource="com/ctgu/ems/score/mapper/ScoreMapper.xml"/>
+	</mappers> 
+</configuration>

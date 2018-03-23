@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctgu.ems.course_select.dao.ClassesMapper">
+  <resultMap id="BaseResultMap" type="com.ctgu.ems.pojo.Classes">
+    <id column="classid" jdbcType="VARCHAR" property="classid" />
+    <result column="cname" jdbcType="VARCHAR" property="cname" />
+    <result column="tname" jdbcType="VARCHAR" property="tname" />
+    <result column="college" jdbcType="VARCHAR" property="college" />
+    <result column="classroom" jdbcType="VARCHAR" property="classroom" />
+    <result column="sweek" jdbcType="INTEGER" property="sweek" />
+    <result column="eweek" jdbcType="INTEGER" property="eweek" />
+    <result column="time" jdbcType="INTEGER" property="time" />
+    <result column="confine" jdbcType="INTEGER" property="confine" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    classid, cname, tname, college, classroom, sweek, eweek, time, confine, number
+  </sql>
+  <select id="selectAllByName" parameterType="com.ctgu.ems.pojo.Classes" resultMap="BaseResultMap">
+  	select classid,cname,tname,college,classroom,sweek,eweek,time,number,confine
+    from classes
+    where cname = #{cname} and college = #{college}
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from classes
+    where classid = #{classid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from classes
+    where classid = #{classid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ctgu.ems.pojo.Classes">
+    insert into classes (classid, cname, tname, 
+      college, classroom, sweek, 
+      eweek, time, confine, 
+      number)
+    values (#{classid,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, #{tname,jdbcType=VARCHAR}, 
+      #{college,jdbcType=VARCHAR}, #{classroom,jdbcType=VARCHAR}, #{sweek,jdbcType=INTEGER}, 
+      #{eweek,jdbcType=INTEGER}, #{time,jdbcType=INTEGER}, #{confine,jdbcType=INTEGER}, 
+      #{number,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctgu.ems.pojo.Classes">
+    insert into classes
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classid != null">
+        classid,
+      </if>
+      <if test="cname != null">
+        cname,
+      </if>
+      <if test="tname != null">
+        tname,
+      </if>
+      <if test="college != null">
+        college,
+      </if>
+      <if test="classroom != null">
+        classroom,
+      </if>
+      <if test="sweek != null">
+        sweek,
+      </if>
+      <if test="eweek != null">
+        eweek,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="confine != null">
+        confine,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classid != null">
+        #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null">
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null">
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="college != null">
+        #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="classroom != null">
+        #{classroom,jdbcType=VARCHAR},
+      </if>
+      <if test="sweek != null">
+        #{sweek,jdbcType=INTEGER},
+      </if>
+      <if test="eweek != null">
+        #{eweek,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=INTEGER},
+      </if>
+      <if test="confine != null">
+        #{confine,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctgu.ems.pojo.Classes">
+    update classes
+    <set>
+      <if test="cname != null">
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null">
+        tname = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="college != null">
+        college = #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="classroom != null">
+        classroom = #{classroom,jdbcType=VARCHAR},
+      </if>
+      <if test="sweek != null">
+        sweek = #{sweek,jdbcType=INTEGER},
+      </if>
+      <if test="eweek != null">
+        eweek = #{eweek,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=INTEGER},
+      </if>
+      <if test="confine != null">
+        confine = #{confine,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+    </set>
+    where classid = #{classid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctgu.ems.pojo.Classes">
+    update classes
+    set cname = #{cname,jdbcType=VARCHAR},
+      tname = #{tname,jdbcType=VARCHAR},
+      college = #{college,jdbcType=VARCHAR},
+      classroom = #{classroom,jdbcType=VARCHAR},
+      sweek = #{sweek,jdbcType=INTEGER},
+      eweek = #{eweek,jdbcType=INTEGER},
+      time = #{time,jdbcType=INTEGER},
+      confine = #{confine,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER}
+    where classid = #{classid,jdbcType=VARCHAR}
+  </update>
+</mapper>

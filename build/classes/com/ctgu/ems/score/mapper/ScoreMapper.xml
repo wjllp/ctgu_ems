@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctgu.ems.score.dao.ScoreDao">
+	<select id="selectBysid" parameterType="String" resultType="com.ctgu.ems.pojo.Score">
+		select * from score where sid=#{sid}
+	</select>
+	
+	<select id="SearchByYearAndTerm" resultType="com.ctgu.ems.pojo.Score">
+		select * from score where sid=#{0} and year=#{1} and term=#{2}
+	</select>
+	
+	<select id="SearchByYear" resultType="com.ctgu.ems.pojo.Score">
+		select * from score where sid=#{0} and year=#{1}
+	</select>
+	
+	<select id="SearchByTerm" resultType="com.ctgu.ems.pojo.Score">
+		select * from score where sid=#{0} and term=#{1}
+	</select>
+</mapper>

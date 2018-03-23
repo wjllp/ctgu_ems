@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctgu.ems.comment.dao.CommentDao">
+	<select id="selectAllteacher" parameterType="String" resultType="com.ctgu.ems.pojo.Comment">
+		select * from comment where sid=#{sid} order by status
+	</select>
+	
+	<insert id="insertCommentResult" parameterType="com.ctgu.ems.pojo.CommentResult">
+		insert into
+		commented(comment_id,tip_1,tip_2,tip_3,tip_4,tip_5,teach_good,need_change,suit_teach)
+		values(#{Comment_id},#{tip_1},#{tip_2},#{tip_3},#{tip_4},#{tip_5},#{TeacherGood},#{NeedChange},#{SuitTeach})
+	</insert>
+	
+	<update id="updateComment" parameterType="com.ctgu.ems.pojo.Comment">
+		update comment set
+		status = '1'  where comment_id = #{comment_id}
+	</update>
+</mapper>

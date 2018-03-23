@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctgu.ems.course_select.dao.CourseMapper">
+  <resultMap id="BaseResultMap" type="com.ctgu.ems.pojo.Course">
+    <id column="cid" jdbcType="VARCHAR" property="cid" />
+    <result column="cname" jdbcType="VARCHAR" property="cname" />
+    <result column="profession" jdbcType="VARCHAR" property="profession" />
+    <result column="learn" jdbcType="VARCHAR" property="learn" />
+    <result column="grade" jdbcType="VARCHAR" property="grade"/>
+    <result column="term"  jdbcType="VARCHAR" property="term"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    cid, cname, profession, learn,grade,term
+  </sql>
+  <select id="getAllCourse" parameterType="com.ctgu.ems.pojo.Course" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" />
+  	from course
+  	<where> 
+  		<if test="profession != null and profession != ''">
+  	    	profession = #{profession,jdbcType=VARCHAR}
+  		</if>
+  		<if test="learn != null and learn != ''">
+  			and learn = #{learn,jdbcType=VARCHAR}
+  		</if>
+  		<if test="grade != null and grade != ''">
+  			and grade = #{grade,jdbcType=VARCHAR}
+  		</if>
+  		<if test="term != null and term != ''">
+  			and term = #{term,jdbcType=VARCHAR}
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where cname = #{cname,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where cid = #{cid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from course
+    where cid = #{cid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ctgu.ems.pojo.Course">
+    insert into course (cid, cname, profession, 
+      learn,grade,term)
+    values (#{cid,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, #{profession,jdbcType=VARCHAR}, 
+      #{learn,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{term,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctgu.ems.pojo.Course">
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="cname != null">
+        cname,
+      </if>
+      <if test="profession != null">
+        profession,
+      </if>
+      <if test="learn != null">
+        learn,
+      </if>
+       <if test="grade != null">
+        grade,
+      </if>
+       <if test="term != null">
+        term,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        #{cid,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null">
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="learn != null">
+        #{learn,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="term != null">
+        #{term,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctgu.ems.pojo.Course">
+    update course
+    <set>
+      <if test="cname != null">
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        profession = #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="learn != null">
+        learn = #{learn,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="term != null">
+        term = #{term,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cid = #{cid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctgu.ems.pojo.Course">
+    update course
+    set cname = #{cname,jdbcType=VARCHAR},
+      profession = #{profession,jdbcType=VARCHAR},
+      learn = #{learn,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR},
+       term = #{term,jdbcType=VARCHAR}
+    where cid = #{cid,jdbcType=VARCHAR}
+  </update>
+</mapper>
